@@ -63,41 +63,169 @@ This E-Commerce platform is specifically tailored for fruit market operations, p
 
 ## 🛠 Technology Stack
 
-> **Note**: Technology stack to be determined based on project requirements.
+**Frontend:**
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS
+- **Build Tool**: Turbopack (Next.js built-in)
+- **UI Components**: Custom components with responsive design
 
-**Planned Technologies:**
-- **Frontend**: TBD (React, Vue.js, or Angular)
-- **Backend**: TBD (Node.js, Python/Django, or Java/Spring)
-- **Database**: TBD (PostgreSQL, MySQL, or MongoDB)
-- **Authentication**: TBD (JWT, OAuth)
-- **Payment Processing**: TBD (Stripe, PayPal)
-- **Deployment**: TBD (AWS, Docker, Kubernetes)
+**Backend:**
+- **Runtime**: Node.js
+- **Framework**: Express.js with TypeScript
+- **Database**: SQLite (development) / PostgreSQL (production)
+- **ORM**: Prisma
+- **Authentication**: JWT (JSON Web Tokens)
+- **Security**: Helmet, CORS, bcryptjs for password hashing
+
+**Development Tools:**
+- **Language**: TypeScript for both frontend and backend
+- **Package Manager**: npm with workspaces
+- **Database Management**: Prisma Studio
+- **Development Server**: Nodemon for backend hot reload
+
+**Planned Integrations:**
+- **Payment Processing**: Stripe integration (planned)
+- **Image Storage**: Cloudinary or AWS S3 (planned)
+- **Email Service**: SendGrid or Nodemailer (planned)
+- **SMS Notifications**: Twilio (planned)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-> **Note**: Prerequisites will be updated once the technology stack is finalized.
+Make sure you have the following installed on your system:
+
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+- **Git**
 
 ### Installation
 
+1. **Clone the repository**
 ```bash
-# Clone the repository
 git clone https://github.com/McAnnison/E-Commerce.git
-
-# Navigate to project directory
 cd E-Commerce
+```
 
-# Installation instructions will be added once code is implemented
+2. **Install dependencies**
+```bash
+# Install all dependencies (root, frontend, and backend)
+npm run install:all
+```
+
+3. **Set up environment variables**
+```bash
+# Backend environment variables
+cd backend
+cp .env.example .env
+```
+
+Edit the `.env` file with your configuration:
+```env
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+JWT_EXPIRES_IN="7d"
+PORT=5000
+NODE_ENV="development"
+FRONTEND_URL="http://localhost:3000"
+```
+
+4. **Set up the database**
+```bash
+# Generate Prisma client
+npm run db:generate
+
+# Run database migrations
+npm run db:migrate
+
+# Seed the database with sample data
+npm run db:seed
+```
+
+### Development
+
+1. **Start the development servers**
+```bash
+# Start both frontend and backend in development mode
+npm run dev
+```
+
+This will start:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000
+- **API Health Check**: http://localhost:5000/health
+
+2. **Alternative: Start servers individually**
+```bash
+# Frontend only
+npm run dev:frontend
+
+# Backend only
+npm run dev:backend
+```
+
+3. **Database management**
+```bash
+# Open Prisma Studio (database GUI)
+npm run db:studio
 ```
 
 ### Configuration
 
-Configuration instructions will be provided once the application is developed.
+The application is configured with workspaces for easy development:
+
+- **Root**: Main package.json with workspace configuration
+- **Frontend**: Next.js application in `/frontend`
+- **Backend**: Express.js API in `/backend`
 
 ## 📖 Usage
 
-Usage documentation will be available once the application features are implemented.
+### Customer Interface
+
+**Homepage** (`http://localhost:3000`)
+- Modern, responsive design showcasing fresh produce
+- Easy navigation to products and categories
+- Featured categories with visual appeal
+
+**Product Catalog** (`http://localhost:3000/products`)
+- Browse all available fruits and vegetables
+- Filter by category (Fruits, Vegetables, Herbs)
+- Product cards with images, prices, and ratings
+- Shopping cart functionality (coming soon)
+
+### API Endpoints
+
+**Authentication**
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+
+**Products**
+- `GET /api/products` - Get all products with filtering
+- `GET /api/products/:id` - Get single product details
+
+**Categories**
+- `GET /api/categories` - Get all categories
+- `GET /api/categories/:id` - Get category with products
+
+**Health Check**
+- `GET /health` - API health status
+
+### Sample Data
+
+The application comes with pre-seeded data including:
+
+**Categories:**
+- Fruits (apples, bananas, oranges, pineapple)
+- Vegetables (tomatoes, onions, carrots, bell peppers)
+- Herbs (ginger, basil)
+
+**Users:**
+- Admin: `admin@fruitmarket.com` / `admin123`
+- Customer: `customer@example.com` / `customer123`
+
+**Suppliers:**
+- Fresh Farm Co.
+- Organic Valley
 
 ## 📚 API Documentation
 
@@ -144,15 +272,40 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🏗 Project Status
 
-**Current Status**: 🚧 **In Development** 🚧
+**Current Status**: ✅ **Core Structure Implemented** ✅
 
-This project is in the initial planning and development phase. The repository currently contains:
-- ✅ Basic project structure
-- ✅ License file
-- ✅ Enhanced README documentation
-- 🔄 Core application code (in progress)
+This project has been successfully set up with a complete full-stack architecture:
 
-We're actively working on implementing the core features. Stay tuned for updates!
+### ✅ Completed Features:
+- ✅ **Project Structure**: Monorepo with frontend and backend workspaces
+- ✅ **Frontend**: Next.js 15 with TypeScript and Tailwind CSS
+- ✅ **Backend**: Express.js API with TypeScript
+- ✅ **Database**: Prisma ORM with SQLite (development ready)
+- ✅ **Authentication**: JWT-based auth system with bcrypt
+- ✅ **API Endpoints**: Products, categories, and auth routes
+- ✅ **UI Components**: Responsive homepage and product catalog
+- ✅ **Database Schema**: Complete e-commerce data model
+- ✅ **Seed Data**: Sample products, categories, and users
+- ✅ **Development Setup**: Hot reload for both frontend and backend
+- ✅ **Build System**: Production-ready builds for both apps
+
+### 🚧 Next Steps (Planned):
+- [ ] **Shopping Cart**: Add to cart functionality
+- [ ] **User Authentication**: Login/register forms and protected routes
+- [ ] **Order Management**: Place orders and order history
+- [ ] **Admin Dashboard**: Inventory and order management interface
+- [ ] **Payment Integration**: Stripe or PayPal integration
+- [ ] **Delivery Tracking**: Real-time order tracking system
+- [ ] **Image Upload**: Product image management
+- [ ] **Email Notifications**: Order confirmations and updates
+
+### 🎯 Ready for Development:
+The application is now ready for feature development. The core infrastructure is in place with:
+- Modern tech stack (Next.js + Express + Prisma)
+- Type-safe development experience
+- Responsive UI design
+- RESTful API architecture
+- Scalable database schema
 
 ---
 
