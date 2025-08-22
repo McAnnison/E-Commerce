@@ -1,0 +1,28 @@
+{
+  "name": "fruit-vegetables-ecommerce",
+  "version": "1.0.0",
+  "description": "E-commerce platform for fruit and vegetable shop",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "setup": "cd backend && npm run db:generate && npm run db:migrate && npm run db:seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/McAnnison/E-Commerce"
+  },
+  "keywords": [
+    "ecommerce",
+    "fruits",
+    "vegetables",
+    "nextjs",
+    "express",
+    "prisma"
+  ],
+  "author": "Mensah Kwame Anni",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
